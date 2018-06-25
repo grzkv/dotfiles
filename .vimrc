@@ -120,3 +120,4 @@ Plug 'beloglazov/vim-online-thesaurus'
 call plug#end()
 "____________plugins__________________
 
+colo nofrils-dark
