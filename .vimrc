@@ -34,7 +34,7 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 set term=xterm-256color
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='aurora'
+let g:airline_theme='jellybeans'
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline_left_sep=''
@@ -75,6 +75,7 @@ nnoremap <Tab> <C-w>w
 " looks
 syntax enable
 set conceallevel=2
+set background=dark
 
 " CtrlP setup
 let g:ctrlp_show_hidden = 1
@@ -90,6 +91,8 @@ let g:syntastic_mode_map = { "mode": "passive",
 " Go setups
 let g:go_auto_sameids = 1
 
+" Vimwiki setup
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 "____________plugins__________________
 call plug#begin('~/.vim/plugged')
 
@@ -102,17 +105,18 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " turn fzf on for vim
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
-" Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
 " Plug 'tpope/vim-repeat'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/goyo.vim'
 Plug 'takac/vim-hardtime'
 Plug 'robertmeta/nofrils'
 Plug 'vim-syntastic/syntastic'
 Plug 'beloglazov/vim-online-thesaurus'
+Plug 'vimwiki/vimwiki'
+Plug 'flazz/vim-colorschemes'
 " Plug 'scrooloose/nerdtree'
 " Plug 'tpope/vim-unimpaired'
 " Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
@@ -120,4 +124,5 @@ Plug 'beloglazov/vim-online-thesaurus'
 call plug#end()
 "____________plugins__________________
 
-colo nofrils-dark
+" colo nofrils-dark
+colo jellybeans 

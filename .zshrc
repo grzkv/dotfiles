@@ -61,3 +61,5 @@ eval "$(jump shell)"
 # brew install direnv
 # https://github.com/direnv/direnv
 eval "$(direnv hook zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
