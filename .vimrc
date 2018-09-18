@@ -41,6 +41,7 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_section_y=''
 let g:airline_section_z='㏑%l/%L'
+let g:airline#extensions#whitespace#enabled = 0
 
 " do not change working directory when opening file (e.g. from FZF)
 set noautochdir
@@ -92,7 +93,7 @@ let g:syntastic_mode_map = { "mode": "passive",
 let g:go_auto_sameids = 1
 
 " Vimwiki setup
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 "____________plugins__________________
 call plug#begin('~/.vim/plugged')
 

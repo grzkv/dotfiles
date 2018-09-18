@@ -1,3 +1,4 @@
+alias ls="ls -G"
 alias l="ls -la"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -6,6 +7,11 @@ path+=('/Users/grzkv/go/bin')
 export PATH
 GOPATH='/Users/grzkv/go'
 export GOPATH
+
+# functions
+rld() {
+    source ~/.zshrc
+}
 
 if [ -z "$HISTFILE" ]; then
     HISTFILE=$HOME/.zsh_history
@@ -21,7 +27,46 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
-PROMPT="%~ Δ "
+### prompt ###
+autoload -U colors && colors
+setopt promptsubst
+
+PROMPT='Δ %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}δ"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+
+# Outputs current branch info in prompt format
+function git_prompt_info() {
+  local ref
+  if [[ "$(command git config --get customzsh.hide-status 2>/dev/null)" != "1" ]]; then
+    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
+    echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+  fi
+}
+
+# Checks if working tree is dirty
+function parse_git_dirty() {
+  local STATUS=''
+  local FLAGS
+  FLAGS=('--porcelain')
+
+  if [[ "$(command git config --get customzsh.hide-dirty)" != "1" ]]; then
+    FLAGS+='--ignore-submodules=dirty'
+    STATUS=$(command git status ${FLAGS} 2> /dev/null | tail -n1)
+  fi
+
+  if [[ -n $STATUS ]]; then
+    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
+  else
+    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
+  fi
+}
+
+# PROMPT="%~ Δ "
 
 autoload -Uz compinit
 compinit
@@ -53,11 +98,14 @@ zstyle ':completion:*' rehash true
 zstyle ':completion:*' list-dirs-first true
 
 ### 3rd party ###
+
 # brew install zsh-autosuggestions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # brew install jump
 # https://github.com/gsamokovarov/jump
 eval "$(jump shell)"
+
 # brew install direnv
 # https://github.com/direnv/direnv
 eval "$(direnv hook zsh)"
