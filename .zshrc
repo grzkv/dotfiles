@@ -1,3 +1,6 @@
+# private parts
+[ -r ~/.zshrc_private ] && source ~/.zshrc_private
+
 alias ls="ls -G"
 alias l="ls -la"
 alias ..="cd .."
