@@ -36,7 +36,9 @@ set term=xterm-256color
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='jellybeans'
 let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_section_y=''
@@ -108,22 +110,20 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
-" Plug 'tpope/vim-repeat'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/goyo.vim'
-Plug 'takac/vim-hardtime'
-Plug 'robertmeta/nofrils'
 Plug 'vim-syntastic/syntastic'
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'vimwiki/vimwiki'
+Plug 'vim-scripts/grep.vim'
 Plug 'flazz/vim-colorschemes'
-" Plug 'scrooloose/nerdtree'
+Plug 'MattesGroeger/vim-bookmarks'
+" Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-unimpaired'
 " Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 
 call plug#end()
 "____________plugins__________________
 
-" colo nofrils-dark
 colo jellybeans 

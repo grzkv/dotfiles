@@ -34,9 +34,9 @@ setopt share_history
 autoload -U colors && colors
 setopt promptsubst
 
-PROMPT='Δ %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+PROMPT='%c $(git_prompt_info)$fg_bold[red]→$reset_color '
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="$fg[blue]($fg[blue]"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}δ"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
@@ -68,8 +68,6 @@ function parse_git_dirty() {
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
   fi
 }
-
-# PROMPT="%~ Δ "
 
 autoload -Uz compinit
 compinit
