@@ -101,7 +101,7 @@ zstyle ':completion:*' list-dirs-first true
 ### 3rd party ###
 
 # brew install zsh-autosuggestions
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # brew install jump
 # https://github.com/gsamokovarov/jump

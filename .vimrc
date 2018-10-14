@@ -93,9 +93,19 @@ let g:syntastic_mode_map = { "mode": "passive",
 
 " Go setups
 let g:go_auto_sameids = 1
+let g:go_snippet_engine = ""
+
+" Don't open scratch window on omnicomplete
+set completeopt-=preview
+" Required for gocode to work
+filetype plugin on
 
 " Vimwiki setup
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
+" Vim deoplete setup
+let g:deoplete#enable_at_startup = 1 
+
 "____________plugins__________________
 call plug#begin('~/.vim/plugged')
 
@@ -112,16 +122,26 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
-Plug 'junegunn/goyo.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'vimwiki/vimwiki'
 Plug 'vim-scripts/grep.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'MattesGroeger/vim-bookmarks'
+Plug 'tpope/vim-unimpaired'
+Plug 'xolox/vim-misc' " Required by vim-session
+Plug 'xolox/vim-session'
+" Plug 'junegunn/goyo.vim'
 " Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-unimpaired'
 " Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  " Needs `pip3 install neovim`
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 call plug#end()
 "____________plugins__________________
