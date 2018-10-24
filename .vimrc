@@ -104,7 +104,10 @@ filetype plugin on
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " Vim deoplete setup
-let g:deoplete#enable_at_startup = 1 
+let g:deoplete#enable_at_startup = 0
+
+" No autosave for the session plugin
+let g:session_autosave = 'no'
 
 "____________plugins__________________
 call plug#begin('~/.vim/plugged')
