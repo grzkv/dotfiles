@@ -13,7 +13,14 @@ export GOPATH
 
 # functions
 rld() {
+    echo "Re-load"
     source ~/.zshrc
+}
+
+gitupd() {
+    git add -A
+    git commit -m "upd"
+    git push
 }
 
 if [ -z "$HISTFILE" ]; then
@@ -34,9 +41,9 @@ setopt share_history
 autoload -U colors && colors
 setopt promptsubst
 
-PROMPT='%c $(git_prompt_info)$fg_bold[red]→$reset_color '
+PROMPT='%c $(git_prompt_info)%{${fg_bold[red]}%}>%{${reset_color}%} '
 
-ZSH_THEME_GIT_PROMPT_PREFIX="$fg[blue]($fg[blue]"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{${fg[blue]}%}(%{${fg[blue]}%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}δ"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
