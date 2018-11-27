@@ -33,6 +33,7 @@ set noswapfile
 set laststatus=2
 let g:airline_powerline_fonts = 1
 set term=xterm-256color
+set termguicolors
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='jellybeans'
 let g:airline#extensions#tabline#left_sep = ''
@@ -134,6 +135,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-unimpaired'
 Plug 'xolox/vim-misc' " Required by vim-session
 Plug 'xolox/vim-session'
+Plug 'morhetz/gruvbox'
 " Plug 'junegunn/goyo.vim'
 " Plug 'tpope/vim-repeat'
 " Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
@@ -149,4 +151,5 @@ endif
 call plug#end()
 "____________plugins__________________
 
-colo jellybeans 
+colo gruvbox
+let g:gruvbox_contrast_dark = 'hard'
