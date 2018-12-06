@@ -120,3 +120,4 @@ eval "$(jump shell)"
 eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
