@@ -9,8 +9,8 @@ alias gupd="git add -A && git commit -m 'upd'"
 
 path+=('/Users/grzkv/go/bin')
 export PATH
-GOPATH='/Users/grzkv/go'
-export GOPATH
+# GOPATH='/Users/grzkv/go'
+# export GOPATH
 
 # functions
 rld() {
