@@ -35,7 +35,7 @@ let g:airline_powerline_fonts = 1
 set term=xterm-256color
 set termguicolors
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='jellybeans'
+let g:airline_theme='bubblegum'
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
@@ -79,7 +79,7 @@ nnoremap <Tab> <C-w>w
 " looks
 syntax enable
 set conceallevel=2
-set background=dark
+set background=light
 
 " CtrlP setup
 let g:ctrlp_show_hidden = 1
@@ -100,9 +100,6 @@ let g:go_snippet_engine = ""
 set completeopt-=preview
 " Required for gocode to work
 filetype plugin on
-
-" Vimwiki setup
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " Vim deoplete setup
 let g:deoplete#enable_at_startup = 0
@@ -128,29 +125,17 @@ Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'vim-syntastic/syntastic'
 Plug 'beloglazov/vim-online-thesaurus'
-Plug 'vimwiki/vimwiki'
 Plug 'vim-scripts/grep.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-unimpaired'
 Plug 'xolox/vim-misc' " Required by vim-session
 Plug 'xolox/vim-session'
-Plug 'morhetz/gruvbox'
 Plug 'cespare/vim-toml'
 " Plug 'junegunn/goyo.vim'
 " Plug 'tpope/vim-repeat'
 " Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  " Needs `pip3 install neovim`
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
 
 call plug#end()
 "____________plugins__________________
 
-colo gruvbox
-let g:gruvbox_contrast_dark = 'hard'
