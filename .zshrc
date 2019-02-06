@@ -70,7 +70,7 @@ setopt share_history
 autoload -U colors && colors
 setopt promptsubst
 
-PROMPT='%c $(git_prompt_info)%{${fg_bold[red]}%}>%{${reset_color}%} '
+PROMPT='%m %c $(git_prompt_info)%(?..%? )%{${fg_bold[red]}%}>%{${reset_color}%} '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{${fg[blue]}%}(%{${fg[blue]}%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
