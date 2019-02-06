@@ -24,6 +24,34 @@ gitupd() {
     git push
 }
 
+dump_tmux_session() {
+  local d=$'\t'
+  tmux list-windows -a -F "#S${d}#W${d}#{pane_current_path}"
+}
+
+save_tmux_sessions() {
+  dump_tmux_session > ~/.tmux-session
+}
+
+restore_tmux_sessions() {
+  tmux start-server
+  local count=0
+  local dimensions="$(terminal_size)"
+
+  while IFS=$'\t' read session_name window_name dir; do
+    if [[ -d "$dir" && $window_name != "log" && $window_name != "man" ]]; then
+      if session_exists "$session_name"; then
+        add_window "$session_name" "$window_name" "$dir"
+      else
+        new_session "$session_name" "$window_name" "$dir" "$dimensions"
+        count=$(( count + 1 ))
+      fi
+    fi
+  done < ~/.tmux-session
+
+  echo "restored $count sessions"
+}
+
 if [ -z "$HISTFILE" ]; then
     HISTFILE=$HOME/.zsh_history
 fi

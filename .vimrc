@@ -132,6 +132,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'xolox/vim-misc' " Required by vim-session
 Plug 'xolox/vim-session'
 Plug 'cespare/vim-toml'
+Plug 'justinmk/vim-sneak'
 " Plug 'junegunn/goyo.vim'
 " Plug 'tpope/vim-repeat'
 " Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
