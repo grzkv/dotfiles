@@ -34,7 +34,7 @@
 [core]
 	whitespace=trailing-space,cr-at-eol
 	editor = vim
-	excludesfile = /Users/grzkv/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [credential]
 	helper = osxkeychain
 [github]

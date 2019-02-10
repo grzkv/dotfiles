@@ -29,6 +29,8 @@ set nobackup
 set nowb
 set noswapfile
 
+set encoding=utf-8
+
 " for airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
