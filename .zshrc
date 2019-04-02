@@ -143,9 +143,6 @@ zstyle ':completion:*' list-dirs-first true
 # https://github.com/gsamokovarov/jump
 eval "$(jump shell)"
 
-# brew install direnv
-# https://github.com/direnv/direnv
-eval "$(direnv hook zsh)"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source '/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+
+source $HOME/repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

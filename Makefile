@@ -6,8 +6,6 @@ all:
 	# [ -f ~/.tigrc ] || ln -s $(PWD)/tigrc ~/.tigrc
 	# [ -f ~/.config/nvim/init.vim ] || ln -s $(PWD)/vimrc ~/.config/nvim/init.vim
 	
-	brew bundle
-
 clean:
 	rm -f ~/.vimrc 
 	rm -f ~/.zshrc
