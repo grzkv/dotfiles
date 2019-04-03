@@ -9,8 +9,6 @@ alias gupd="git add -A && git commit -m 'upd'"
 
 path+=('/Users/grzkv/go/bin')
 export PATH
-# GOPATH='/Users/grzkv/go'
-# export GOPATH
 
 # functions
 rld() {
@@ -66,7 +64,7 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
-### prompt ###
+# prompt ###
 autoload -U colors && colors
 setopt promptsubst
 
@@ -133,6 +131,11 @@ zstyle '*' single-ignored show
 zstyle ':completion:*' rehash true
 # Keep directories and files separated
 zstyle ':completion:*' list-dirs-first true
+
+# Start tmux automatically
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
 
 ### 3rd party ###
 
