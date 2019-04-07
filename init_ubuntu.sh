@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 
-sudo add-apt-repository ppa:mozillateam/firefox-next
-sudo add-apt-repository ppa:neovim-ppa/stable
-sudo add-apt-repository ppa:jonathonf/vim
+sudo add-apt-repository -y ppa:mozillateam/firefox-next
+sudo add-apt-repository -y ppa:neovim-ppa/stable
+sudo add-apt-repository -y ppa:jonathonf/vim
+# sudo apt-get install apt-transport-https ca-certificates gnupg-agent software-properties-common
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
-sudo apt-get update
+sudo apt-get -y update
 
-sudo apt-get install zsh git
-sudo apt-get install wget curl glances nnn tmux net-tools zsh-syntax-highlighting tldr tig ripgrep shellcheck
-sudo apt-get install vim neovim
-sudo apt-get install firefox
+sudo apt-get -y install zsh git
+sudo apt-get -y install wget curl glances nnn tmux net-tools zsh-syntax-highlighting tldr tig ripgrep shellcheck icdiff peco fpp
+sudo apt-get -y install vim neovim
+sudo apt-get -y install firefox
+sudo apt-get -y install docker-ce docker-ce-cli containerd.io
 
 mkdir ~/init
 
@@ -52,4 +56,7 @@ chsh -s "$(command -v zsh)"
 cd ~/init
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/init/zsh-syntax-highlighting
 echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+
+# VIM PLUG
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
