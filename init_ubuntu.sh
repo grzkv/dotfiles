@@ -1,29 +1,37 @@
 #!/usr/bin/env bash
 
-sudo add-apt-repository -y ppa:mozillateam/firefox-next
-sudo add-apt-repository -y ppa:neovim-ppa/stable
-sudo add-apt-repository -y ppa:jonathonf/vim
-# sudo apt-get install apt-transport-https ca-certificates gnupg-agent software-properties-common
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+add_ppas ()
+{
+    sudo add-apt-repository -y ppa:mozillateam/firefox-next || printf "ERROR: failed to add firefox PPA"
+    sudo add-apt-repository -y ppa:neovim-ppa/stable || printf "ERROR: failed to add neovim PPA"
+    sudo add-apt-repository -y ppa:jonathonf/vim || printf "ERROR: failed to add vim PPA"
+    # sudo apt-get install apt-transport-https ca-certificates gnupg-agent software-properties-common
+    # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" || printf "ERROR: failed to add docker PPA"
 
-sudo apt-get -y update
+    sudo apt-get -y update
+}
+add_ppas
 
-sudo apt-get -y install zsh git
-sudo apt-get -y install wget curl glances nnn tmux net-tools zsh-syntax-highlighting tldr tig ripgrep shellcheck icdiff peco fpp
-sudo apt-get -y install vim neovim
-sudo apt-get -y install firefox
-sudo apt-get -y install docker-ce docker-ce-cli containerd.io
+sudo apt-get -y install zsh git wget curl glances nnn tmux net-tools zsh-syntax-highlighting tldr tig ripgrep shellcheck icdiff peco fpp vim neovim firefox thunderbird || printf "ERROR: installing packages failed"
+sudo apt-get -y install docker-ce docker-ce-cli containerd.io || printf "ERROR: Installing docker failed"
 
-mkdir ~/init
+install_fzf ()
+{
+    git clone --depth 1 'https://github.com/junegunn/fzf.git' ~/.fzf || { printf "ERROR: cloning fzf repo failed"; return; }
+    ~/.fzf/install
+}
+install_fzf
 
-# FZF
-git clone --depth 1 'https://github.com/junegunn/fzf.git' ~/.fzf
-~/.fzf/install
+tmpdir=$(mktemp -d)
+trap rm -rf "$tmpdir"
 
-# JUMP
-wget 'https://github.com/gsamokovarov/jump/releases/download/v0.22.0/jump_0.22.0_amd64.deb' -P ~/init
-sudo dpkg -i "~/init/jump_0.22.0_amd64.deb"
+install_jump ()
+{
+    wget 'https://github.com/gsamokovarov/jump/releases/download/v0.22.0/jump_0.22.0_amd64.deb' -P "$tmpdir" || { printf "ERROR: getting jump failed"; return; }
+    sudo dpkg -i "$tmpdir/jump_0.22.0_amd64.deb" || printf "ERROR: installing jump failed"
+}
+install_jump
 
 # BUILD ST
 # install_st() {
@@ -40,23 +48,26 @@ sudo dpkg -i "~/init/jump_0.22.0_amd64.deb"
 # 
 # install_st
 
-# DOTFILES
-git clone https://github.com/grzkv/dotfiles ~/dotfiles
-cd ~/dotfiles || echo "could not go to dotfiles dir"
+setup_dotfiles ()
+{
+    git clone https://github.com/grzkv/dotfiles ~/dotfiles || { printf "ERROR while cloning dotfiles"; return; }
 
-[ -f ~/.vimrc ] || ln -s ~/dotfiles/.vimrc ~/.vimrc
-[ -f ~/.zshrc ] || ln -s ~/dotfiles/.zshrc ~/.zshrc
-[ -f ~/.gitconfig ] || ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-[ -f ~/.tmux.conf ] || ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+    ln -s ~/dotfiles/.vimrc ~/.vimrc || printf "ERROR: could not symlink vimrc"
+    ln -s ~/dotfiles/.zshrc ~/.zshrc || printf "ERROR: could not symlink zshrc"
+    ln -s ~/dotfiles/.gitconfig ~/.gitconfig || printf "ERROR: could not symlink gitconfig"
+    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf || printf "ERROR: could not symlink tmux.conf"
+}
+setup_dotfiles
 
 # SWITCH SHELLS
 chsh -s "$(command -v zsh)"
 
 # ZSH HIGHLIGHT
-cd ~/init
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/init/zsh-syntax-highlighting
-echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
-# VIM PLUG
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
+install_plug ()
+{
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim || { printf "ERROR getting vim-plug"; return; }
+    vim +PlugInstall +qall || printf "ERROR installing vim plugins"
+}
+install_plug

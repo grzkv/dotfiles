@@ -143,4 +143,4 @@ eval "$(jump shell)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source /home/rgrytskiv/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/rgrytskiv/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
