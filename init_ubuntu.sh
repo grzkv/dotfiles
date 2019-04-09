@@ -4,38 +4,45 @@ err () {
     printf "\\n>>> ERROR: %s\\n" "$@" >&2
 }
 
+apps=(zsh git wget curl glances nnn tmux net-tools zsh-syntax-highlighting tldr tig ripgrep shellcheck icdiff peco fpp vim neovim firefox thunderbird golang-go)
 add_ppas ()
 {
+    sudo -E apt-get -y install curl apt-transport-https ca-certificates gnupg-agent software-properties-common || { err "failed to install packs required to securely install PPAs"; return; }
+
     sudo -E add-apt-repository -y ppa:mozillateam/firefox-next || err "failed to add firefox PPA"
     sudo -E add-apt-repository -y ppa:neovim-ppa/stable || err "failed to add neovim PPA"
     sudo -E add-apt-repository -y ppa:jonathonf/vim || err "failed to add vim PPA"
-    # sudo -E apt-get install apt-transport-https ca-certificates gnupg-agent software-properties-common
-    # curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo -E apt-key add -
-    sudo -E add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" || err "failed to add docker PPA"
+    if curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo -E apt-key add -
+    then
+        sudo -E add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" || err "failed to add docker PPA"
+    fi
+
     sudo -E add-apt-repository -y ppa:longsleep/golang-backports || err "failed to add golang PPA"
 
-    sudo -E apt-get -y update
+    sudo -E apt-get -y --allow-unauthenticated update
 }
 add_ppas
 
-sudo -E apt-get -y install zsh git wget curl glances nnn tmux net-tools zsh-syntax-highlighting tldr tig ripgrep shellcheck icdiff peco fpp vim neovim firefox thunderbird || err "installing packages failed"
-sudo -E apt-get -y install golang-go || err "while installing dev tools"
-sudo -E apt-get -y install docker-ce docker-ce-cli containerd.io || err "Installing docker failed"
+install_apps () {
+    for a in "${apps[@]}"; do
+        sudo -E apt-get -y install "$a" || err "installing $a failed"
+    done
+    sudo -E apt-get -y install docker-ce docker-ce-cli containerd.io || err "Installing docker failed"
+}
+install_apps
 
-install_fzf ()
-{
-    git clone --depth 1 'https://github.com/junegunn/fzf.git' ~/.fzf || { err "cloning fzf repo failed"; return; }
+install_fzf () {
+    [ -d ~/.fzf ] || { git clone --depth 2 'https://github.com/junegunn/fzf.git' ~/.fzf || { err "cloning fzf repo failed"; return; } }
     ~/.fzf/install
 }
 install_fzf
 
-tmpdir=$(mktemp -d)
-trap rm -rf "$tmpdir"
-
 install_jump ()
 {
-    wget 'https://github.com/gsamokovarov/jump/releases/download/v0.22.0/jump_0.22.0_amd64.deb' -P "$tmpdir" || { err "getting jump failed"; return; }
-    sudo -E dpkg -i "$tmpdir/jump_0.22.0_amd64.deb" || err "installing jump failed"
+    tmpdir=$(mktemp -d)
+    trap rm -rf "$tmpdir"
+    wget -O "$tmpdir/jump.deb" 'https://github.com/gsamokovarov/jump/releases/download/v1.22.0/jump_0.22.0_amd64.deb' || { err "getting jump failed"; return; }
+    sudo -E dpkg -i "$tmpdir/jump.deb" || err "installing jump failed"
 }
 install_jump
 
@@ -56,7 +63,7 @@ install_jump
 
 setup_dotfiles ()
 {
-    git clone https://github.com/grzkv/dotfiles ~/dotfiles || { err "while cloning dotfiles"; return; }
+    [ -d ~/dotfiles ] || { git clone https://github.com/grzkv/dotfiles ~/dotfiles || { err "while cloning dotfiles"; return; } }
 
     ln -s ~/dotfiles/.vimrc ~/.vimrc || err "could not symlink vimrc"
     ln -s ~/dotfiles/.zshrc ~/.zshrc || err "could not symlink zshrc"
