@@ -4,7 +4,7 @@ err () {
     printf "\\n>>> ERROR: %s\\n" "$@" >&2
 }
 
-apps=(zsh git wget curl glances nnn tmux net-tools zsh-syntax-highlighting tldr tig ripgrep shellcheck icdiff peco fpp vim neovim firefox thunderbird golang-go)
+apps=(zsh git wget curl glances nnn tmux net-tools zsh-syntax-highlighting tldr tig ripgrep shellcheck icdiff peco sxiv scrot vim neovim firefox thunderbird golang-go)
 add_ppas ()
 {
     sudo -E apt-get -y install curl apt-transport-https ca-certificates gnupg-agent software-properties-common || { err "failed to install packs required to securely install PPAs"; return; }
