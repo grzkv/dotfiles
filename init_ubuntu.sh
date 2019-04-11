@@ -40,8 +40,8 @@ install_fzf
 install_jump ()
 {
     tmpdir=$(mktemp -d)
-    trap rm -rf "$tmpdir"
-    wget -O "$tmpdir/jump.deb" 'https://github.com/gsamokovarov/jump/releases/download/v1.22.0/jump_0.22.0_amd64.deb' || { err "getting jump failed"; return; }
+    trap "rm -rf $tmpdir" EXIT
+    wget -O "$tmpdir/jump.deb" 'https://github.com/gsamokovarov/jump/releases/download/v0.22.0/jump_0.22.0_amd64.deb' || { err "getting jump failed"; return; }
     sudo -E dpkg -i "$tmpdir/jump.deb" || err "installing jump failed"
 }
 install_jump
@@ -65,18 +65,21 @@ setup_dotfiles ()
 {
     [ -d ~/dotfiles ] || { git clone https://github.com/grzkv/dotfiles ~/dotfiles || { err "while cloning dotfiles"; return; } }
 
-    ln -s ~/dotfiles/.vimrc ~/.vimrc || err "could not symlink vimrc"
-    ln -s ~/dotfiles/.zshrc ~/.zshrc || err "could not symlink zshrc"
-    ln -s ~/dotfiles/.gitconfig ~/.gitconfig || err "could not symlink gitconfig"
-    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf || err "could not symlink tmux.conf"
+    ln -sf ~/dotfiles/.vimrc ~/.vimrc || err "could not symlink vimrc"
+    ln -sf ~/dotfiles/.zshrc ~/.zshrc || err "could not symlink zshrc"
+    ln -sf ~/dotfiles/.gitconfig ~/.gitconfig || err "could not symlink gitconfig"
+    ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf || err "could not symlink tmux.conf"
 }
 setup_dotfiles
 
 # SWITCH SHELLS
 chsh -s "$(command -v zsh)"
 
-# ZSH HIGHLIGHT
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
+setup_zsh_highlighting () {
+    if [ ! -d ~/.zsh/zsh-syntax-highlighting ]; then
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting || err "cloning zsh highlighting repo"
+    fi
+}
 
 install_plug ()
 {
