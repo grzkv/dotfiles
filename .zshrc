@@ -7,7 +7,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias gupd="git add -A && git commit -m 'upd'"
 
-path+=('/Users/grzkv/go/bin')
+PATH=$PATH:~/go/bin
 export PATH
 
 # functions
