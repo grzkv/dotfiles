@@ -33,20 +33,23 @@ set encoding=utf-8
 
 " for airline
 set laststatus=2
-let g:airline_powerline_fonts = 1
-set term=xterm-256color
 set termguicolors
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='bubblegum'
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_section_y=''
-let g:airline_section_z='㏑%l/%L'
-let g:airline#extensions#whitespace#enabled = 0
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_theme='bubblegum'
+" let g:airline#extensions#tabline#left_sep = ''
+" let g:airline#extensions#tabline#left_alt_sep = ''
+" let g:airline#extensions#tabline#right_sep = ''
+" let g:airline#extensions#tabline#right_alt_sep = ''
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+" let g:airline_section_y=''
+" let g:airline_section_z='㏑%l/%L'
+" let g:airline#extensions#whitespace#enabled = 0
+
+" already displayed by link
+set noshowmode
+let g:lightline = { 'colorscheme': 'PaperColor', }
 
 " do not change working directory when opening file (e.g. from FZF)
 set noautochdir
@@ -112,10 +115,9 @@ let g:session_autosave = 'no'
 "____________plugins__________________
 call plug#begin('~/.vim/plugged')
 
-Plug 'pangloss/vim-javascript'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " turn fzf on for vim
@@ -135,7 +137,7 @@ Plug 'xolox/vim-misc' " Required by vim-session
 Plug 'xolox/vim-session'
 Plug 'cespare/vim-toml'
 Plug 'justinmk/vim-sneak'
-" Plug 'junegunn/goyo.vim'
+Plug 'itchyny/lightline.vim'
 " Plug 'tpope/vim-repeat'
 " Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 
