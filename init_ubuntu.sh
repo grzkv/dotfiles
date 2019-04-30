@@ -69,6 +69,9 @@ setup_dotfiles ()
     ln -sf ~/dotfiles/.zshrc ~/.zshrc || err "could not symlink zshrc"
     ln -sf ~/dotfiles/.gitconfig ~/.gitconfig || err "could not symlink gitconfig"
     ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf || err "could not symlink tmux.conf"
+    mkdir -p ~/.config
+    mkdir -p ~/.config/nvim
+    ln -sf ~/dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim || err "could not symlink init.vim"
 }
 setup_dotfiles
 
