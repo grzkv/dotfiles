@@ -49,7 +49,7 @@ set termguicolors
 
 " already displayed by link
 set noshowmode
-let g:lightline = { 'colorscheme': 'PaperColor', }
+" let g:lightline = { 'colorscheme': 'jellybeans', }
 
 " do not change working directory when opening file (e.g. from FZF)
 set noautochdir
@@ -85,6 +85,7 @@ nnoremap <Tab> <C-w>w
 syntax enable
 set conceallevel=2
 set background=light
+let g:one_allow_italics = 1
 
 " CtrlP setup
 let g:ctrlp_show_hidden = 1
@@ -111,13 +112,20 @@ let g:deoplete#enable_at_startup = 0
 
 " No autosave for the session plugin
 let g:session_autosave = 'no'
+let g:session_autoload = 'no'
+
+augroup AutoSaveFolds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
+
+let g:go_fmt_experimental = 1
 
 "____________plugins__________________
 call plug#begin('~/.vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " turn fzf on for vim
@@ -130,7 +138,6 @@ Plug 'godlygeek/tabular'
 Plug 'vim-syntastic/syntastic'
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'vim-scripts/grep.vim'
-Plug 'flazz/vim-colorschemes'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-unimpaired'
 Plug 'xolox/vim-misc' " Required by vim-session
@@ -138,9 +145,11 @@ Plug 'xolox/vim-session'
 Plug 'cespare/vim-toml'
 Plug 'justinmk/vim-sneak'
 Plug 'itchyny/lightline.vim'
+Plug 'rakr/vim-one'
 " Plug 'tpope/vim-repeat'
 " Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 
 call plug#end()
 "____________plugins__________________
 
+colorscheme one

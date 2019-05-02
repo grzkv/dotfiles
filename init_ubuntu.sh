@@ -4,13 +4,13 @@ err () {
     printf "\\n>>> ERROR: %s\\n" "$@" >&2
 }
 
-apps=(zsh git wget curl glances nnn tmux net-tools zsh-syntax-highlighting tldr tig ripgrep shellcheck icdiff peco sxiv scrot vim neovim firefox thunderbird golang-go jq)
+apps=(zsh git wget curl glances nnn tmux net-tools zsh-syntax-highlighting tldr tig ripgrep shellcheck icdiff peco sxiv scrot vim neovim firefox thunderbird golang-go jq zathura)
 add_ppas ()
 {
     sudo -E apt-get -y install curl apt-transport-https ca-certificates gnupg-agent software-properties-common || { err "failed to install packs required to securely install PPAs"; return; }
 
     sudo -E add-apt-repository -y ppa:mozillateam/firefox-next || err "failed to add firefox PPA"
-    sudo -E add-apt-repository -y ppa:neovim-ppa/stable || err "failed to add neovim PPA"
+    sudo -E add-apt-repository -y ppa:neovim-ppa/unstable || err "failed to add neovim PPA"
     sudo -E add-apt-repository -y ppa:jonathonf/vim || err "failed to add vim PPA"
     if curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo -E apt-key add -
     then
