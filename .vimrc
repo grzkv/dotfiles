@@ -49,7 +49,7 @@ set termguicolors
 
 " already displayed by link
 set noshowmode
-" let g:lightline = { 'colorscheme': 'jellybeans', }
+let g:lightline = { 'colorscheme': 'default', }
 
 " do not change working directory when opening file (e.g. from FZF)
 set noautochdir
@@ -66,20 +66,24 @@ set splitright
 " shortcuts
 let mapleader = ","
 " start search via ctrlp
-nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>x :bd<CR>
 " start file search with FZF
 nnoremap <Leader>s :FZF<CR>
 " buffer cycle
 nnoremap <Leader>n :bnext<CR>
 
-" NERDTree
-nnoremap <Leader>t :NERDTreeToggle<CR>
+" netrw
+nnoremap <Leader>e :Exp<CR>
 
 " settings edit
 nnoremap <Leader>s :e ~/.vimrc<CR>
 
 " window switching
 nnoremap <Tab> <C-w>w
+
+nnoremap <Leader>i :GoInfo<CR>
+nnoremap <Leader>d :GoDoc<CR>
+nnoremap <Leader>b :GoBuild<CR>
 
 " looks
 syntax enable
@@ -99,28 +103,21 @@ let g:syntastic_mode_map = { "mode": "passive",
     \ "passive_filetypes": [] }
 
 " Go setups
-let g:go_auto_sameids = 1
+let g:go_auto_sameids = 0
 let g:go_snippet_engine = ""
+let g:go_fmt_experimental = 1
+" let g:go_info_mode = 'gopls'
+let g:go_auto_type_info = 1
 
 " Don't open scratch window on omnicomplete
 set completeopt-=preview
 " Required for gocode to work
 filetype plugin on
 
-" Vim deoplete setup
-let g:deoplete#enable_at_startup = 0
-
 " No autosave for the session plugin
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
-
-augroup AutoSaveFolds
-  autocmd!
-  autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent! loadview
-augroup END
-
-let g:go_fmt_experimental = 1
+setlocal omnifunc=go#complete#Complete
 
 "____________plugins__________________
 call plug#begin('~/.vim/plugged')
@@ -133,7 +130,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
-Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'vim-syntastic/syntastic'
 Plug 'beloglazov/vim-online-thesaurus'
@@ -146,6 +142,11 @@ Plug 'cespare/vim-toml'
 Plug 'justinmk/vim-sneak'
 Plug 'itchyny/lightline.vim'
 Plug 'rakr/vim-one'
+Plug 'fatih/vim-go'
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"   Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+" endif
 " Plug 'tpope/vim-repeat'
 " Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 
@@ -153,3 +154,6 @@ call plug#end()
 "____________plugins__________________
 
 colorscheme one
+
+" let g:deoplete#enable_at_startup = 1
+" call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })

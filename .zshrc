@@ -6,6 +6,7 @@ alias l="ls -la"
 alias ..="cd .."
 alias ...="cd ../.."
 alias gupd="git add -A && git commit -m 'upd'"
+alias vim=nvim
 
 PATH=$PATH:~/go/bin
 export PATH
@@ -48,6 +49,16 @@ restore_tmux_sessions() {
   done < ~/.tmux-session
 
   echo "restored $count sessions"
+}
+
+export NNN_TMPFILE="/tmp/nnn"
+
+n() {
+    nnn "$@"
+    if [ -f $NNN_TMPFILE ]; then
+        . $NNN_TMPFILE
+        rm $NNN_TMPFILE
+    fi
 }
 
 if [ -z "$HISTFILE" ]; then
