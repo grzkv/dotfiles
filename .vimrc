@@ -107,7 +107,6 @@ let g:go_auto_sameids = 0
 let g:go_snippet_engine = ""
 let g:go_fmt_experimental = 1
 " let g:go_info_mode = 'gopls'
-let g:go_auto_type_info = 1
 
 " Don't open scratch window on omnicomplete
 set completeopt-=preview

@@ -7,8 +7,9 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias gupd="git add -A && git commit -m 'upd'"
 alias vim=nvim
+alias vi=nvim
 
-PATH=$PATH:~/go/bin
+PATH=$PATH:~/go/bin:~/bin
 export PATH
 
 # functions
