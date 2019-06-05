@@ -65,12 +65,11 @@ set splitright
 
 " shortcuts
 let mapleader = ","
-" start search via ctrlp
-nnoremap <Leader>x :bd<CR>
-" start file search with FZF
-nnoremap <Leader>s :FZF<CR>
+
+nnoremap <Leader>x :Bdelete<CR>
+nnoremap <Leader>q :q<CR>
 " buffer cycle
-nnoremap <Leader>n :bnext<CR>
+" nnoremap <Leader>n :bnext<CR>
 
 " netrw
 nnoremap <Leader>e :Exp<CR>
@@ -81,15 +80,28 @@ nnoremap <Leader>s :e ~/.vimrc<CR>
 " window switching
 nnoremap <Tab> <C-w>w
 
+" simple pane nav
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 nnoremap <Leader>i :GoInfo<CR>
 nnoremap <Leader>d :GoDoc<CR>
 nnoremap <Leader>b :GoBuild<CR>
+
+let g:ctrlp_map = ''
+
+" start file search with FZF
+nnoremap <C-p> :FZF<CR>
 
 " looks
 syntax enable
 set conceallevel=2
 set background=light
 let g:one_allow_italics = 1
+" display ruler
+set colorcolumn=101
 
 " CtrlP setup
 let g:ctrlp_show_hidden = 1
@@ -106,6 +118,9 @@ let g:syntastic_mode_map = { "mode": "passive",
 let g:go_auto_sameids = 0
 let g:go_snippet_engine = ""
 let g:go_fmt_experimental = 1
+let g:go_fmt_options = {
+  \ 'gofmt': '-s',
+  \ }
 " let g:go_info_mode = 'gopls'
 
 " Don't open scratch window on omnicomplete
@@ -142,6 +157,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'itchyny/lightline.vim'
 Plug 'rakr/vim-one'
 Plug 'fatih/vim-go'
+Plug 'moll/vim-bbye'
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "   Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
