@@ -49,7 +49,19 @@ set termguicolors
 
 " already displayed by link
 set noshowmode
-let g:lightline = { 'colorscheme': 'default', }
+let g:lightline = {
+    \ 'colorscheme': 'default',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'readonly', 'filename', 'modified', 'gitbranch' ] ],
+    \ 'right': [ [ 'lineinfo' ],
+    \            [ 'percent' ],
+    \            [ 'filetype'] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \ },
+    \ }
 
 " do not change working directory when opening file (e.g. from FZF)
 set noautochdir
@@ -68,6 +80,7 @@ let mapleader = ","
 
 nnoremap <Leader>x :Bdelete<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>w :w<CR>
 " buffer cycle
 " nnoremap <Leader>n :bnext<CR>
 
@@ -94,6 +107,7 @@ let g:ctrlp_map = ''
 
 " start file search with FZF
 nnoremap <C-p> :FZF<CR>
+nnoremap <Leader>g :Rg<CR>
 
 " looks
 syntax enable
@@ -101,7 +115,7 @@ set conceallevel=2
 set background=light
 let g:one_allow_italics = 1
 " display ruler
-set colorcolumn=101
+" set colorcolumn=101
 
 " CtrlP setup
 let g:ctrlp_show_hidden = 1
@@ -122,6 +136,8 @@ let g:go_fmt_options = {
   \ 'gofmt': '-s',
   \ }
 " let g:go_info_mode = 'gopls'
+
+" autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " Don't open scratch window on omnicomplete
 set completeopt-=preview
@@ -156,8 +172,10 @@ Plug 'cespare/vim-toml'
 Plug 'justinmk/vim-sneak'
 Plug 'itchyny/lightline.vim'
 Plug 'rakr/vim-one'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'moll/vim-bbye'
+Plug 'tpope/vim-commentary'
+Plug 'rodjek/vim-puppet'
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "   Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
