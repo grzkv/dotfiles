@@ -8,6 +8,7 @@ alias ...="cd ../.."
 alias gupd="git add -A && git commit -m 'upd'"
 alias vim=nvim
 alias vi=nvim
+alias ta='tmux a -t'
 
 PATH=$PATH:~/go/bin:~/bin
 export PATH

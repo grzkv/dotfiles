@@ -109,6 +109,11 @@ let g:ctrlp_map = ''
 nnoremap <C-p> :FZF<CR>
 nnoremap <Leader>g :Rg<CR>
 
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+
 " looks
 syntax enable
 set conceallevel=2
@@ -163,7 +168,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'godlygeek/tabular'
 Plug 'vim-syntastic/syntastic'
 Plug 'beloglazov/vim-online-thesaurus'
-Plug 'vim-scripts/grep.vim'
+"Plug 'vim-scripts/grep.vim'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-unimpaired'
 Plug 'xolox/vim-misc' " Required by vim-session
@@ -176,6 +181,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'moll/vim-bbye'
 Plug 'tpope/vim-commentary'
 Plug 'rodjek/vim-puppet'
+"Plug 'jremmen/vim-ripgrep'
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "   Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
