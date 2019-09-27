@@ -34,18 +34,6 @@ set encoding=utf-8
 " for airline
 set laststatus=2
 set termguicolors
-" let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline_theme='bubblegum'
-" let g:airline#extensions#tabline#left_sep = ''
-" let g:airline#extensions#tabline#left_alt_sep = ''
-" let g:airline#extensions#tabline#right_sep = ''
-" let g:airline#extensions#tabline#right_alt_sep = ''
-" let g:airline_left_sep=''
-" let g:airline_right_sep=''
-" let g:airline_section_y=''
-" let g:airline_section_z='㏑%l/%L'
-" let g:airline#extensions#whitespace#enabled = 0
 
 " already displayed by link
 set noshowmode
@@ -78,30 +66,25 @@ set splitright
 " shortcuts
 let mapleader = ","
 
+" leader shorts
 nnoremap <Leader>x :Bdelete<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>w :w<CR>
-" buffer cycle
-" nnoremap <Leader>n :bnext<CR>
-
-" netrw
 nnoremap <Leader>e :Exp<CR>
-
-" settings edit
 nnoremap <Leader>s :e ~/.vimrc<CR>
+nnoremap <Leader>h :CtrlPMRUFiles<CR>
 
-" window switching
-nnoremap <Tab> <C-w>w
+nnoremap <Leader>i :GoInfo<CR>
+nnoremap <Leader>d :GoDoc<CR>
+nnoremap <Leader>b :GoBuild<CR>
+nnoremap <Leader>r :GoReferrers<CR>
+" nnoremap <Leader>n :bnext<CR>
 
 " simple pane nav
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-nnoremap <Leader>i :GoInfo<CR>
-nnoremap <Leader>d :GoDoc<CR>
-nnoremap <Leader>b :GoBuild<CR>
 
 let g:ctrlp_map = ''
 
@@ -165,12 +148,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
 Plug 'vim-syntastic/syntastic'
 Plug 'beloglazov/vim-online-thesaurus'
-"Plug 'vim-scripts/grep.vim'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'tpope/vim-unimpaired'
 Plug 'xolox/vim-misc' " Required by vim-session
 Plug 'xolox/vim-session'
 Plug 'cespare/vim-toml'
@@ -179,8 +163,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'rakr/vim-one'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'moll/vim-bbye'
-Plug 'tpope/vim-commentary'
 Plug 'rodjek/vim-puppet'
+Plug 'brooth/far.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'jremmen/vim-ripgrep'
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
