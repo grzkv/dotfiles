@@ -10,7 +10,7 @@ alias vim=nvim
 alias vi=nvim
 alias ta='tmux a -t'
 
-PATH=$PATH:~/go/bin:~/bin
+PATH=$PATH:~/go/bin:~/bin:/usr/local/go/bin
 export PATH
 
 # functions
@@ -155,5 +155,3 @@ zstyle ':completion:*' list-dirs-first true
 eval "$(jump shell)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-source /home/rgrytskiv/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -132,9 +132,6 @@ set completeopt-=preview
 " Required for gocode to work
 filetype plugin on
 
-" No autosave for the session plugin
-let g:session_autosave = 'no'
-let g:session_autoload = 'no'
 setlocal omnifunc=go#complete#Complete
 
 "____________plugins__________________
@@ -155,10 +152,7 @@ Plug 'godlygeek/tabular'
 Plug 'vim-syntastic/syntastic'
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'MattesGroeger/vim-bookmarks'
-Plug 'xolox/vim-misc' " Required by vim-session
-Plug 'xolox/vim-session'
 Plug 'cespare/vim-toml'
-Plug 'justinmk/vim-sneak'
 Plug 'itchyny/lightline.vim'
 Plug 'rakr/vim-one'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -167,6 +161,9 @@ Plug 'rodjek/vim-puppet'
 Plug 'brooth/far.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-obsession'
+Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
+
 "Plug 'jremmen/vim-ripgrep'
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
