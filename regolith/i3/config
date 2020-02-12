@@ -235,7 +235,7 @@ bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
 # take a screenshot
-bindsym $mod+Ctrl+s flameshot gui
+bindsym $mod+Ctrl+s exec flameshot gui
 
 # Disable titlebar
 new_window pixel 1
