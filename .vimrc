@@ -123,7 +123,8 @@ let g:go_fmt_experimental = 1
 let g:go_fmt_options = {
   \ 'gofmt': '-s',
   \ }
-" let g:go_info_mode = 'gopls'
+let g:go_info_mode = 'gopls'
+let g:go_rename_command = 'gopls'
 
 " autocmd BufReadPost fugitive://* set bufhidden=delete
 
@@ -133,6 +134,12 @@ set completeopt-=preview
 filetype plugin on
 
 setlocal omnifunc=go#complete#Complete
+let g:deoplete#enable_at_startup = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'go': ['/home/rgrytskiv/go/bin/gopls'],
+    \ }
 
 "____________plugins__________________
 call plug#begin('~/.vim/plugged')
@@ -156,6 +163,17 @@ Plug 'cespare/vim-toml'
 Plug 'itchyny/lightline.vim'
 Plug 'rakr/vim-one'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'moll/vim-bbye'
 Plug 'rodjek/vim-puppet'
 Plug 'brooth/far.vim'

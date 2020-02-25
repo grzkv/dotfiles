@@ -8,6 +8,7 @@
 	c = commit
 	ca = !git add -A && git commit -m
 	save = !git add -A && git commit -m "WIP"
+    pushupd = !git add -A && git commit -m "upd" && git push
 	b = branch
 	co = checkout
 	d = diff
@@ -15,6 +16,7 @@
 	unstage = reset HEAD --
 	discard = checkout -- 
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+    prunewell = !git branch --merged master | grep -v '^[ *]*master$' | xargs git branch -d
 
 [color]
 	ui = auto
