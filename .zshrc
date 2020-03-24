@@ -7,7 +7,17 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias gupd="git add -A && git commit -m 'upd'"
 alias vi=nvim
+alias svi="sudo nvim"
 alias ta='tmux a -t'
+
+# systemctl aliases
+alias slog='sudo journalctl -f -u'
+alias sstatus='sudo systemctl status'
+alias sstop='sudo systemctl stop'
+alias sstart='sudo systemctl start'
+alias srestart='sudo systemctl restart'
+
+alias ck='./k.py | xclip -selection clipboard'
 
 PATH=$PATH:~/go/bin:~/bin:/usr/local/go/bin
 export PATH

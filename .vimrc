@@ -110,10 +110,11 @@ let g:ctrlp_show_hidden = 1
 
 " Syntastic setups
 let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_sh_checkers = ['ShellCheck']
 let g:syntastic_check_on_wq = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_mode_map = { "mode": "passive",
-    \ "active_filetypes": [],
+    \ "active_filetypes": ['sh'],
     \ "passive_filetypes": [] }
 
 " Go setups
@@ -133,8 +134,7 @@ set completeopt-=preview
 " Required for gocode to work
 filetype plugin on
 
-setlocal omnifunc=go#complete#Complete
-let g:deoplete#enable_at_startup = 1
+" setlocal omnifunc=go#complete#Complete
 
 let g:LanguageClient_serverCommands = {
     \ 'python': ['/usr/local/bin/pyls'],
@@ -174,6 +174,7 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'moll/vim-bbye'
 Plug 'rodjek/vim-puppet'
 Plug 'brooth/far.vim'
@@ -193,7 +194,6 @@ Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
 call plug#end()
 "____________plugins__________________
 
+let g:deoplete#enable_at_startup = 1
 colorscheme one
 
-" let g:deoplete#enable_at_startup = 1
-" call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
