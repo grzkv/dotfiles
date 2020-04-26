@@ -63,6 +63,10 @@ set clipboard=unnamed
 set splitbelow
 set splitright
 
+" check if file was changed on disk after cursor moved and left still for 4
+" sec
+autocmd CursorHold * checktime
+
 " shortcuts
 let mapleader = ","
 
@@ -169,10 +173,6 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'moll/vim-bbye'
@@ -181,15 +181,7 @@ Plug 'brooth/far.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-obsession'
-Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
-
-"Plug 'jremmen/vim-ripgrep'
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"   Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-" endif
-" Plug 'tpope/vim-repeat'
-" Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
+Plug 'mcchrish/nnn.vim'
 
 call plug#end()
 "____________plugins__________________

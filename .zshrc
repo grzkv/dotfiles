@@ -22,6 +22,11 @@ alias ck='./k.py | xclip -selection clipboard'
 PATH=$PATH:~/go/bin:~/bin:/usr/local/go/bin
 export PATH
 
+EDITOR=nvim
+export EDITOR
+VISUAL=nvim
+export VISUAL
+
 # functions
 rld() {
     echo "Re-load"
@@ -62,13 +67,31 @@ restore_tmux_sessions() {
   echo "restored $count sessions"
 }
 
-export NNN_TMPFILE="/tmp/nnn"
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
 
-n() {
-    nnn "$@"
-    if [ -f $NNN_TMPFILE ]; then
-        . $NNN_TMPFILE
-        rm $NNN_TMPFILE
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn -e "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
     fi
 }
 
@@ -156,11 +179,13 @@ zstyle ':completion:*' list-dirs-first true
 
 ### 3rd party ###
 
-# brew install zsh-autosuggestions
 #source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# brew install jump
 # https://github.com/gsamokovarov/jump
 eval "$(jump shell)"
 
+. ~/bin/z.sh
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[[ -s "/home/rgrytskiv/.gvm/scripts/gvm" ]] && source "/home/rgrytskiv/.gvm/scripts/gvm"
