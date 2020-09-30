@@ -145,6 +145,9 @@ let g:LanguageClient_serverCommands = {
     \ 'go': ['/home/rgrytskiv/go/bin/gopls'],
     \ }
 
+" impacts gitgutter among other things
+set updatetime=500
+
 "____________plugins__________________
 call plug#begin('~/.vim/plugged')
 

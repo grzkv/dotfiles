@@ -179,11 +179,6 @@ zstyle ':completion:*' list-dirs-first true
 
 ### 3rd party ###
 
-#source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# https://github.com/gsamokovarov/jump
-eval "$(jump shell)"
-
 . ~/bin/z.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
