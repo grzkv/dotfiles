@@ -121,29 +121,10 @@ let g:syntastic_mode_map = { "mode": "passive",
     \ "active_filetypes": ['sh'],
     \ "passive_filetypes": [] }
 
-" Go setups
-let g:go_auto_sameids = 0
-let g:go_snippet_engine = ""
-let g:go_fmt_experimental = 1
-let g:go_fmt_options = {
-  \ 'gofmt': '-s',
-  \ }
-let g:go_info_mode = 'gopls'
-let g:go_rename_command = 'gopls'
-
-" autocmd BufReadPost fugitive://* set bufhidden=delete
-
 " Don't open scratch window on omnicomplete
 set completeopt-=preview
 " Required for gocode to work
 filetype plugin on
-
-" setlocal omnifunc=go#complete#Complete
-
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'go': ['/home/rgrytskiv/go/bin/gopls'],
-    \ }
 
 " impacts gitgutter among other things
 set updatetime=500
@@ -170,16 +151,7 @@ Plug 'cespare/vim-toml'
 Plug 'itchyny/lightline.vim'
 Plug 'rakr/vim-one'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-endif
-Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'moll/vim-bbye'
-Plug 'rodjek/vim-puppet'
 Plug 'brooth/far.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -189,6 +161,5 @@ Plug 'mcchrish/nnn.vim'
 call plug#end()
 "____________plugins__________________
 
-let g:deoplete#enable_at_startup = 1
 colorscheme one
 
