@@ -1,0 +1,34 @@
+[user]
+	name = Roman Grytskiv
+	email = 3339062+grzkv@users.noreply.github.com
+
+[alias]
+	s = status -sb
+    A = add -A
+	c = commit
+	ca = !git add -A && git commit -m
+	save = !git add -A && git commit -m "WIP"
+    pushupd = !git add -A && git commit -m "upd" && git push
+	b = branch
+	co = checkout
+	d = diff
+	lg = log --graph --decorate --pretty=oneline --abbrev-commit
+	unstage = reset HEAD --
+	discard = checkout -- 
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+    prunewell = !git branch --merged master | grep -v '^[ *]*master$' | xargs git branch -d
+
+[color]
+	ui = auto
+
+[core]
+	whitespace=trailing-space,cr-at-eol
+	editor = nvim
+	excludesfile = ~/.gitignore_global
+
+[github]
+	user = grzkv
+
+[push]
+    default = current
+
