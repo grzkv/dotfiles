@@ -93,8 +93,8 @@ nnoremap <C-H> <C-W><C-H>
 let g:ctrlp_map = ''
 
 " start file search with FZF
-nnoremap <C-p> :FZF<CR>
-nnoremap <Leader>g :Rg<CR>
+" nnoremap <C-p> :FZF<CR>
+" nnoremap <Leader>g :Rg<CR>
 
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
@@ -113,13 +113,13 @@ let g:one_allow_italics = 1
 let g:ctrlp_show_hidden = 1
 
 " Syntastic setups
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_sh_checkers = ['ShellCheck']
-let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_mode_map = { "mode": "passive",
-    \ "active_filetypes": ['sh'],
-    \ "passive_filetypes": [] }
+" let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_sh_checkers = ['ShellCheck']
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_check_on_open = 0
+" let g:syntastic_mode_map = { "mode": "passive",
+"     \ "active_filetypes": ['sh'],
+"     \ "passive_filetypes": [] }
 
 " Don't open scratch window on omnicomplete
 set completeopt-=preview
@@ -132,31 +132,30 @@ set updatetime=500
 "____________plugins__________________
 call plug#begin()
 
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim' " turn fzf on for vim
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim' " turn fzf on for vim
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'godlygeek/tabular'
-Plug 'vim-syntastic/syntastic'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'cespare/vim-toml'
+" Plug 'godlygeek/tabular'
+" Plug 'vim-syntastic/syntastic'
+" Plug 'MattesGroeger/vim-bookmarks'
+" Plug 'cespare/vim-toml'
 Plug 'itchyny/lightline.vim'
 Plug 'rakr/vim-one'
-Plug 'moll/vim-bbye'
+" Plug 'moll/vim-bbye'
 Plug 'brooth/far.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-obsession'
-Plug 'mcchrish/nnn.vim'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+" Plug 'scrooloose/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'tpope/vim-obsession'
+" Plug 'mcchrish/nnn.vim'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 "____________plugins__________________
