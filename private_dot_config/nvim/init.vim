@@ -129,6 +129,7 @@ filetype plugin on
 " impacts gitgutter among other things
 set updatetime=500
 
+
 "____________plugins__________________
 call plug#begin()
 
@@ -155,10 +156,12 @@ Plug 'brooth/far.vim'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'tpope/vim-obsession'
 " Plug 'mcchrish/nnn.vim'
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
+Plug 'ggandor/leap.nvim'
 
 call plug#end()
 "____________plugins__________________
 
+lua require('leap').add_default_mappings()
 colorscheme one
 

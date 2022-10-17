@@ -4,6 +4,8 @@
 <dict>
 	<key>AllowClipboardAccess</key>
 	<true/>
+	<key>AlternateMouseScroll</key>
+	<true/>
 	<key>Default Bookmark Guid</key>
 	<string>005427DB-B2CC-4A3F-8E98-8E351AD53217</string>
 	<key>DeleteProfile_SilenceUntil</key>
@@ -24,7 +26,7 @@
 			<key>ASCII Anti Aliased</key>
 			<true/>
 			<key>ASCII Ligatures</key>
-			<false/>
+			<true/>
 			<key>Ambiguous Double Width</key>
 			<false/>
 			<key>Ansi 0 Color</key>
@@ -47,12 +49,16 @@
 			</dict>
 			<key>Ansi 10 Color</key>
 			<dict>
-				<key>Blue Component</key>
-				<real>0.3333333432674408</real>
-				<key>Green Component</key>
+				<key>Alpha Component</key>
 				<real>1</real>
+				<key>Blue Component</key>
+				<real>0.20783154362602882</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
+				<key>Green Component</key>
+				<real>0.679290771484375</real>
 				<key>Red Component</key>
-				<real>0.3333333432674408</real>
+				<real>0.18169079488143325</real>
 			</dict>
 			<key>Ansi 11 Color</key>
 			<dict>
@@ -101,12 +107,16 @@
 			</dict>
 			<key>Ansi 2 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.0</real>
+				<real>0.0065246480517089367</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.627899169921875</real>
 				<key>Red Component</key>
-				<real>0.0</real>
+				<real>0.0065246480517089367</real>
 			</dict>
 			<key>Ansi 3 Color</key>
 			<dict>
@@ -725,6 +735,8 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Minimum Contrast</key>
+			<real>0.49651692708333334</real>
 			<key>Mouse Reporting</key>
 			<false/>
 			<key>Name</key>
